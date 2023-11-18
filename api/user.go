@@ -32,7 +32,7 @@ func UserCreate(c *gin.Context) {
 	}
 	err = dao.NewMysqlDao(c).UserInsert(c, &user)
 	if err != nil {
-		c.JSON(401, gin.H{"code": -2, "message": err.Error()})
+		c.JSON(500, gin.H{"code": -2, "message": err.Error()})
 		return
 	}
 	c.JSON(200, gin.H{"code": 0, "data": user})
@@ -78,7 +78,7 @@ func UserSelectByName(c *gin.Context) {
 	}
 	users, err := dao.NewMysqlDao(c).UsersSelectByName(c, names)
 	if err != nil {
-		c.JSON(401, gin.H{"code": -2, "message": err.Error()})
+		c.JSON(500, gin.H{"code": -2, "message": err.Error()})
 		return
 	}
 	c.JSON(200, gin.H{"code": 0, "data": users})

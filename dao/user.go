@@ -42,7 +42,7 @@ func (dao *MysqlDao) UsersSelectByName(ctx context.Context, names []string) ([]*
 	for _, name := range names {
 		cond = append(cond, sq.Eq{"name": name})
 	}
-	var users []*model.User
+	users := make([]*model.User, 0)
 	dao.selectByCond(ctx, userTableName, selectExp, nil, nil, cond, &users)
 	return users, nil
 }
